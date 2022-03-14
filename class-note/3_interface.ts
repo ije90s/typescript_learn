@@ -29,3 +29,5 @@ var sum: SumFunction;
 sum = function sum(a: number, b: number): number{
     return a + b;
 }
+
+//git 테스트 
