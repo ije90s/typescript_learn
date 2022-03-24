@@ -1,3 +1,10 @@
+//ES6 이전 방식 > 생성자 함수로 프로토타입으로 이용 가능
+function Person(name, age){
+    this.name = name; 
+    this.age = age;
+}
+var capt = new Person("캡틴", 100);
+
 class Person {
     //클래스 로직 
     consturctor(name, age){
