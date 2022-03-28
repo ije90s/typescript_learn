@@ -26,15 +26,26 @@ function logNumber(num: number){
 }
 */
 
-function logText(text: string | number){
+/*function logText(text: string | number){
     console.log(text);
     return text;
-}
+}*/
 
-const a = logText('a');
-a.split('');
-logText(10); 
+//const a = logText('a');
+//a.split('');
+//logText(10); 
 //const num = logNumber(10); 
 //logText(true);
 
 
+function logText<T>(text: T): T{
+    console.log(text);
+    return text;
+}
+
+const str = logText<string>('abc');
+str.split('');
+const login = logText<boolean>(true);
+
+//logText('a');
+//logText(10);
