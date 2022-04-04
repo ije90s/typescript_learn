@@ -1,29 +1,34 @@
-//이메일 인터페이스 선언
-interface Email {
-  value: string; 
-  selected: boolean; 
+interface DropdownItem<T> {
+  value: T;
+  selected: boolean;
 }
 
-const emails: Email[] = [
+//이메일 인터페이스 선언
+//interface Email {
+//  value: string; 
+//  selected: boolean; 
+//}
+
+const emails: DropdownItem<string>[] = [
   { value: 'naver.com', selected: true },
   { value: 'gmail.com', selected: false },
   { value: 'hanmail.net', selected: false },
 ];
 
 //상품번호 인터페이스 선언
-interface productNumber {
-  value: number; 
-  selected: boolean;
-};
+//interface productNumber {
+//  value: number; 
+//  selected: boolean;
+//};
 
-const numberOfProducts: productNumber[] = [
+const numberOfProducts: DropdownItem<number>[] = [
   { value: 1, selected: true },
   { value: 2, selected: false },
   { value: 3, selected: false },
 ];
 
 //유니온 타입으로 인자값 지정
-function createDropdownItem(item: Email | productNumber ) {
+function createDropdownItem(item: DropdownItem<string> | DropdownItem<number> ) {
   const option = document.createElement('option');
   option.value = item.value.toString();
   option.innerText = item.value.toString();
