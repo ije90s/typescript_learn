@@ -28,7 +28,7 @@ const numberOfProducts: DropdownItem<number>[] = [
 ];
 
 //유니온 타입으로 인자값 지정
-function createDropdownItem(item: DropdownItem<string> | DropdownItem<number> ) {
+function createDropdownItem<T>(item: DropdownItem<T> ) {
   const option = document.createElement('option');
   option.value = item.value.toString();
   option.innerText = item.value.toString();
@@ -38,12 +38,12 @@ function createDropdownItem(item: DropdownItem<string> | DropdownItem<number> ) 
 
 // NOTE: 이메일 드롭 다운 아이템 추가
 emails.forEach(function (email) {
-  const item = createDropdownItem(email);
+  const item = createDropdownItem<String>(email);
   const selectTag = document.querySelector('#email-dropdown');
   selectTag.appendChild(item);
 });
 
 // 유니온 타입으로 지정했기 때문에 numberOfProducts도 오류 X
 numberOfProducts.forEach(function (product) {
-  const item = createDropdownItem(product);
+  const item = createDropdownItem<number>(product);
 });
