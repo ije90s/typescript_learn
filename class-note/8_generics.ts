@@ -64,3 +64,13 @@ interface Dropdown<T> {
 };
 
 const obj: Dropdown<number> = { value: 'abc', selected: false};
+
+//제너릭 타입 제한
+function logTextLength<T>(text: T[]): T[]{
+    console.log(text.length);
+    text.forEach(function (text){
+        console.log(text);
+    });
+    return text;
+}
+logTextLength<string>(['hi', 'abc']);
