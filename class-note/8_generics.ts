@@ -66,11 +66,23 @@ interface Dropdown<T> {
 const obj: Dropdown<number> = { value: 'abc', selected: false};
 
 //제너릭 타입 제한
-function logTextLength<T>(text: T[]): T[]{
-    console.log(text.length);
-    text.forEach(function (text){
-        console.log(text);
-    });
+//function logTextLength<T>(text: T[]): T[]{
+//    //배열로 받고, 리턴하기 때문에 함수 내에서 배열의 속성(length, forEach)을 이용
+//    console.log(text.length);
+//    text.forEach(function (text){
+//        console.log(text);
+//    });
+//    return text;
+//}
+//logTextLength<string>(['hi', 'abc']);
+
+//제너릭 타입 제한 2 - 정의된 타입 이용하기
+interface LengthType {
+    length: number;
+}
+function logTextLength<T extends LengthType>(text: T): T{
+    text.length; 
     return text;
 }
-logTextLength<string>(['hi', 'abc']);
+logTextLength(10);
+logTextLength({leng: 10});
