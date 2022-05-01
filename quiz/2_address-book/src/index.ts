@@ -12,9 +12,9 @@ interface Contact {
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
-function fetchContacts() {
+function fetchContacts<T>(): Promise<T[]> {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  const contacts = [
+  const contacts: T[] = [
     {
       name: 'Tony',
       address: 'Malibu',
@@ -49,13 +49,14 @@ function fetchContacts() {
       },
     },
   ];
+
   return new Promise(resolve => {
     setTimeout(() => resolve(contacts), 2000);
   });
 }
 
 // main
-class AddressBook {
+class AddressBook<T> {
   // TODO: 아래 변수의 타입을 지정해보세요.
   contacts = [];
 
@@ -64,27 +65,27 @@ class AddressBook {
   }
 
   fetchData() {
-    fetchContacts().then(response => {
+    fetchContacts<T>().then(response => {
       this.contacts = response;
     });
   }
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name) {
+  findContactByName(name: string) {
     return this.contacts.filter(contact => contact.name === name);
   }
 
-  findContactByAddress(address) {
+  findContactByAddress(address: string) {
     return this.contacts.filter(contact => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber, phoneType: string) {
+  findContactByPhone(phoneNumber: PhoneNumberDictionary, phoneType: string) {
     return this.contacts.filter(
       contact => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-  addContact(contact) {
+  addContact(contact: T) {
     this.contacts.push(contact);
   }
 
@@ -98,4 +99,4 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
-new AddressBook();
+new AddressBook<Contact>();
