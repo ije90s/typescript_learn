@@ -33,3 +33,6 @@ var detailedItem: DetailDropdown<number> = {
     value: 'abcd', 
     title: 'abcde'
 }
+
+// Best Common Type : 타입스크립트에 어떤 타입인지를 결정하는 알고리즘
+var arr = [1,2,true];
