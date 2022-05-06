@@ -109,4 +109,7 @@ class AddressBook {
   /* ------------------------------------------------ */
 }
 
+const div = document.querySelector('div') as HTMLDivElement;
+div.innerText;
+
 new AddressBook();
