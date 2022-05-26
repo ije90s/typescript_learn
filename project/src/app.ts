@@ -1,3 +1,9 @@
+// 라이브러리 로딩 
+//import 변수명 from '라이브러리 이름';
+// 변수, 함수 임포트 문법
+//import {} from '파일 상대 경로';
+import axios from 'axios';
+
 // utils
 //? 1. html 태그를 가져와서 해당 태그 리턴
 function $(selector: string) {
@@ -9,7 +15,7 @@ function getUnixTimestamp(date: Date) {
 
 // DOM
 //? 4. 타입 단언으로 DOM 타입 구체적으로 선언
-let a: Element | HTMLElement | HTMLParagraphElement; // DOM 내에서 이루고 있는 구조체 Element > HTMLElement > HTMLParagraphElement
+// let a: Element | HTMLElement | HTMLParagraphElement; // DOM 내에서 이루고 있는 구조체 Element > HTMLElement > HTMLParagraphElement
 const confirmedTotal = $('.confirmed-total') as HTMLSpanElement;
 const deathsTotal = $('.deaths') as HTMLParagraphElement;
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
