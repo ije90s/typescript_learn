@@ -1,8 +1,9 @@
-// 라이브러리 로딩 
+// 라이브러리 로딩
 //import 변수명 from '라이브러리 이름';
 // 변수, 함수 임포트 문법
 //import {} from '파일 상대 경로';
 import axios from 'axios';
+import { Chart } from 'chart.js';
 
 // utils
 //? 1. html 태그를 가져와서 해당 태그 리턴
