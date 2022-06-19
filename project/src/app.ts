@@ -13,9 +13,10 @@ import {
 } from './covid/index';
 
 // utils
-//? 1. html 태그를 가져와서 해당 태그 리턴
-function $(selector: string) {
-  return document.querySelector(selector);
+//? 1. html 태그를 가져와서 해당 태그 리턴 > 디폴트 값 지정
+function $<T extends HTMLElement = HTMLDivElement>(selector: string) {
+  const element = document.querySelector(selector);
+  return element as T;
 }
 function getUnixTimestamp(date: Date | string) {
   return new Date(date).getTime();
@@ -24,13 +25,15 @@ function getUnixTimestamp(date: Date | string) {
 // DOM
 //? 4. 타입 단언으로 DOM 타입 구체적으로 선언
 // let a: Element | HTMLElement | HTMLParagraphElement; // DOM 내에서 이루고 있는 구조체 Element > HTMLElement > HTMLParagraphElement
-const confirmedTotal = $('.confirmed-total') as HTMLSpanElement;
+//const temp = $<HTMLParagraphElement>('.abc');
+const temp = $('.abc');
+const confirmedTotal = $<HTMLSpanElement>('.confirmed-total');
 const deathsTotal = $('.deaths') as HTMLParagraphElement;
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
 const lastUpdatedTime = $('.last-updated-time') as HTMLParagraphElement;
-const rankList = $('.rank-list');
-const deathsList = $('.deaths-list');
-const recoveredList = $('.recovered-list');
+const rankList = $('.rank-list') as HTMLOListElement;
+const deathsList = $('.deaths-list') as HTMLOListElement;
+const recoveredList = $('.recovered-list') as HTMLOListElement;
 const deathSpinner = createSpinnerElement('deaths-spinner');
 const recoveredSpinner = createSpinnerElement('recovered-spinner');
 
@@ -185,12 +188,18 @@ function setRecoveredList(data: CountrySummaryResponse) {
     p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
     li.appendChild(span);
     li.appendChild(p);
-    recoveredList.appendChild(li);
+    recoveredList?.appendChild(li);
+
+    // if ((recoveredList === null) | (recoveredList === undefined)) {
+    //   return;
+    // } else {
+    //   recoveredList;
+    // }
   });
 }
 
 function clearRecoveredList() {
-  recoveredList.innerHTML = null;
+  recoveredList.innerHTML = '';
 }
 
 function setTotalRecoveredByCountry(data: CountrySummaryResponse) {
